@@ -20,6 +20,29 @@ function Tip() {
     if (!tipCustom) setTip(value);
   };
 
+  const calculateTip = () => {
+    let tipValue = 0;
+    if (tip) tipValue = tip;
+    else tipValue = tipCustom;
+
+    const tipAmount = (bill * tipValue) / 100;
+    const tipPerPerson = tipAmount / numPerson;
+    const totalPerPerson = bill / numPerson + tipPerPerson;
+    return [tipPerPerson, totalPerPerson];
+  };
+
+  const toString = (number) => {
+    return number.toLocaleString("en-US", { maximumFractionDigits: 2 });
+  };
+  useEffect(() => {
+    if (bill && (tip || tipCustom) && numPerson) {
+      if (bill != 0 && numPerson != 0) {
+        const [tipPerPerson, totalPerPerson] = calculateTip();
+        setResults([toString(tipPerPerson), toString(totalPerPerson)]);
+      }
+    }
+  }, [bill, tip, tipCustom, numPerson]);
+
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 bg-white max-w-170 rounded-t-3xl rounded-b-0 sm:rounded-3xl p-7">
       <div className="flex flex-col gap-8">
