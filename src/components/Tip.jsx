@@ -1,8 +1,8 @@
 import dollarIcon from "../../public/assets/images/icon-dollar.svg";
 import personIcon from "../../public/assets/images/icon-person.svg";
-
+import Result from "./Result";
 import Button from "./common/Button";
-
+import ResultValue from "./ResultValue";
 import InputField from "./common/InputField";
 import InputContainer from "./common/InputContainer";
 
@@ -14,6 +14,7 @@ function Tip() {
   const [tip, setTip] = useState(0);
   const [tipCustom, setTipCustom] = useState("");
   const [numPerson, setNumPerson] = useState("");
+  const [results, setResults] = useState([0, 0]);
 
   const tipHandler = (e) => {
     const value = Number(e.target.value);
@@ -42,6 +43,14 @@ function Tip() {
       }
     }
   }, [bill, tip, tipCustom, numPerson]);
+
+  const resetHandler = () => {
+    setBill("");
+    setTip(0);
+    setNumPerson("");
+    setTipCustom("");
+    setResults([0.0, 0.0]);
+  };
 
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 bg-white max-w-170 rounded-t-3xl rounded-b-0 sm:rounded-3xl p-7">
@@ -97,6 +106,21 @@ function Tip() {
           />
         </InputContainer>
       </div>
+      <Result>
+        <div className="text-white">
+          {results.map((result, i) => (
+            <ResultValue
+              title={`${i == 0 ? "Tip Amount" : "Total"}`}
+              result={result}
+            />
+          ))}
+        </div>
+        <Button
+          text="RESET"
+          style="text-neutral-darker w-full text-sm bg-neutral-reset py-2"
+          clickHandler={resetHandler}
+        />
+      </Result>
     </div>
   );
 }
