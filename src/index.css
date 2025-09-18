@@ -4,4 +4,12 @@
 
 @theme {
   --font-monospace: "Space Mono", monospace;
+  --color-neutral-basic: hsl(172, 67%, 45%);
+  --color-neutral-darker: hsl(183, 100%, 15%);
+  --color-neutral-dark: hsl(186, 14%, 43%);
+  --color-neutral-light: hsl(184, 14%, 56%);
+  --color-neutral-lighter: hsl(185, 41%, 84%);
+  --color-neutral-lightest: hsl(189, 47%, 97%);
+  --color-neutral-input: hsla(185, 41%, 84%, 0.3);
+  --color-neutral-reset: hsla(172, 67%, 45%, 0.2);
 }
